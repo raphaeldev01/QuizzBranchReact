@@ -7,7 +7,10 @@
 -ReactJs (JSX, CSS, React-router-dom) - for front-end
 -API (NodeJS, Firebase)
 
-#PrtSc
+# PrtSc
 
-![alt text](image.png)
+## Home Page
 ![alt text](image-1.png)
+
+## Preview Page
+![alt text](image.png)
