@@ -227,9 +227,9 @@ export default function QuizDetailsPage() {
 
                 <div className={styles.updated}>Last updated: {quiz.lastUpdated}</div>
 
-                <button className={styles.startButton}>
+                <Link to={`/startquiz/${quizId}`} className={styles.startButton}>
                   Start Quiz
-                </button>
+                </Link>
               </div>
             </div>
           </aside>

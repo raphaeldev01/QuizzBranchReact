@@ -14,3 +14,6 @@
 
 ## Preview Page
 ![alt text](image.png)
+
+## Quiz Page
+![alt text](image-2.png)

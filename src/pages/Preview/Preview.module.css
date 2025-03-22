@@ -296,6 +296,8 @@
     cursor: pointer;
     margin-top: 20px;
     transition: background-color 0.2s;
+    display: block;
+    text-align: center;
   }
   
   .startButton:hover {
