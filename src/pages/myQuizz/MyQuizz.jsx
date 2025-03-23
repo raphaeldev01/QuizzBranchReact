@@ -58,12 +58,16 @@ export default function MyQuizzesPage() {
 
     // Filter quizzes based on search query and category
     const filteredCreatedQuizzes = createdQuizzes.filter((quiz) => {
+        if(!quiz.title) return;
+
         const matchesSearch = quiz.title.toLowerCase().includes(searchQuery.toLowerCase())
         const matchesCategory = filterCategory === "all" || quiz.category === filterCategory
         return matchesSearch && matchesCategory
     })
 
     const filteredTakenQuizzes = takenQuizzes.filter((quiz) => {
+        if(!quiz.title) return;
+
         const matchesSearch = quiz.title.toLowerCase().includes(searchQuery.toLowerCase())
         const matchesCategory = filterCategory === "all" || quiz.category === filterCategory
         return matchesSearch && matchesCategory
