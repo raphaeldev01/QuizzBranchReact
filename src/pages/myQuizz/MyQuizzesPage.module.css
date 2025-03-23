@@ -1,0 +1,463 @@
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .main {
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  
+  .pageHeader {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .pageTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  .pageDescription {
+    color: #666;
+    font-size: 1rem;
+  }
+  
+  .loadingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+  }
+  
+  .loadingSpinner {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border: 0.25rem solid #e5e7eb;
+    border-top-color: #5c6bc0;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .loadingText {
+    color: #6b7280;
+  }
+  
+  .tabsContainer {
+    margin-bottom: 1.5rem;
+  }
+  
+  .tabs {
+    display: flex;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .tab {
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    color: #6b7280;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .tab:hover {
+    color: #5c6bc0;
+  }
+  
+  .activeTab {
+    color: #5c6bc0;
+    border-bottom-color: #5c6bc0;
+  }
+  
+  .filtersContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  @media (min-width: 640px) {
+    .filtersContainer {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+  
+  .searchContainer {
+    position: relative;
+    flex: 1;
+  }
+  
+  .searchIcon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 1rem;
+    width: 1rem;
+    color: #6b7280;
+  }
+  
+  .searchInput {
+    width: 100%;
+    padding: 0.625rem 0.625rem 0.625rem 2.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+  }
+  
+  .searchInput:focus {
+    outline: none;
+    border-color: #5c6bc0;
+    box-shadow: 0 0 0 2px rgba(92, 107, 192, 0.2);
+  }
+  
+  .filterContainer {
+    position: relative;
+    width: 100%;
+  }
+  
+  @media (min-width: 640px) {
+    .filterContainer {
+      width: auto;
+      min-width: 200px;
+    }
+  }
+  
+  .filterIcon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 1rem;
+    width: 1rem;
+    color: #6b7280;
+    pointer-events: none;
+  }
+  
+  .filterSelect {
+    width: 100%;
+    padding: 0.625rem 0.625rem 0.625rem 2.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+  }
+  
+  .filterSelect:focus {
+    outline: none;
+    border-color: #5c6bc0;
+    box-shadow: 0 0 0 2px rgba(92, 107, 192, 0.2);
+  }
+  
+  .quizzesSection {
+    margin-bottom: 3rem;
+  }
+  
+  .sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .createButton {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: #5c6bc0;
+    color: white;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.2s;
+  }
+  
+  .createButton:hover {
+    background-color: #3f51b5;
+  }
+  
+  .createButtonIcon {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+  }
+  
+  .emptyState {
+    text-align: center;
+    padding: 3rem 1rem;
+    background-color: #f9fafb;
+    border-radius: 0.5rem;
+    border: 1px dashed #e5e7eb;
+  }
+  
+  .emptyStateText {
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+  }
+  
+  .emptyStateButton {
+    display: inline-block;
+    padding: 0.625rem 1.25rem;
+    background-color: #5c6bc0;
+    color: white;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.2s;
+  }
+  
+  .emptyStateButton:hover {
+    background-color: #3f51b5;
+  }
+  
+  .quizGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  @media (min-width: 640px) {
+    .quizGrid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .quizGrid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  .quizCard {
+    position: relative;
+    border-radius: 0.5rem;
+    border: 1px solid #e5e7eb;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s;
+    text-decoration: none;
+    color: inherit;
+    background-color: white;
+  }
+  
+  .quizCard:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  .quizCardImageContainer {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+  
+  .quizCardImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.2s;
+  }
+  
+  .quizCard:hover .quizCardImage {
+    transform: scale(1.05);
+  }
+  
+  .categoryBadge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    background-color: rgba(59, 130, 246, 0.9);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+  
+  .draftBadge {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    background-color: rgba(107, 114, 128, 0.9);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+  
+  .scoreDisplay {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    background-color: rgba(59, 130, 246, 0.9);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  
+  .scoreIcon {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+  
+  .quizCardContent {
+    padding: 1rem 1rem 0.5rem;
+    flex-grow: 1;
+  }
+  
+  .quizCardTitle {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    transition: color 0.2s;
+  }
+  
+  .quizCard:hover .quizCardTitle {
+    color: #5c6bc0;
+  }
+  
+  .quizCardDescription {
+    color: #6b7280;
+    font-size: 0.875rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+  }
+  
+  .quizCardScore {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  
+  .scoreBar {
+    flex: 1;
+    height: 0.5rem;
+    background-color: #e5e7eb;
+    border-radius: 9999px;
+    overflow: hidden;
+  }
+  
+  .scoreBarFill {
+    height: 100%;
+    border-radius: 9999px;
+  }
+  
+  .scorePercentage {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #6b7280;
+  }
+  
+  .quizCardFooter {
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    color: #6b7280;
+    font-size: 0.75rem;
+  }
+  
+  .quizCardMeta {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  
+  .quizCardMetaIcon {
+    height: 0.875rem;
+    width: 0.875rem;
+  }
+  
+  .quizCardActions {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    gap: 0.25rem;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 10;
+  }
+  
+  .quizCard:hover .quizCardActions {
+    opacity: 1;
+  }
+  
+  .quizCardAction {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 9999px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .quizCardAction:hover {
+    background-color: #f3f4f6;
+  }
+  
+  .quizCardActionIcon {
+    width: 1rem;
+    height: 1rem;
+    color: #6b7280;
+  }
+  
+  .quizCardDate {
+    padding: 0.5rem 1rem;
+    border-top: 1px solid #f3f4f6;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #6b7280;
+    font-size: 0.75rem;
+  }
+  
+  .quizCardDateIcon {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+  
+  

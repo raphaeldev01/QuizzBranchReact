@@ -4,10 +4,11 @@ import { useState, useEffect } from "react"
 import { CheckCircle, XCircle, ArrowLeft, Clock, BarChart } from "lucide-react"
 import styles from "./Game.module.css"
 import { Link } from "react-router-dom"
+import config from "../../config.json"
 
 export default function QuizPage() {
 
-  const quizId = "geography"
+  const quizId = window.location.pathname.split("/")[window.location.pathname.split("/").length - 1]
 
   const [quiz, setQuiz] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -17,70 +18,89 @@ export default function QuizPage() {
   const [score, setScore] = useState(0)
   const [quizCompleted, setQuizCompleted] = useState(false)
 
+
+  const getDatas = async () => {
+    const { token } = JSON.parse(localStorage.getItem("user"))
+
+    setLoading(true);
+    const response = await (await fetch(config.URL + "/quizz/get/" + quizId, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })).json()
+
+    const quizData = response.infos
+
+    setQuiz(quizData)
+    setLoading(false)
+  }
   // Mock quiz data - in a real app, this would be fetched from an API
   useEffect(() => {
     // Simulate API fetch
-    setTimeout(() => {
-      const quizData = {
-        id: quizId,
-        title:
-          quizId === "geography"
-            ? "World Geography"
-            : quizId === "history"
-              ? "Ancient History"
-              : quizId === "science"
-                ? "Basic Science"
-                : "Quiz",
-        description: "Test your knowledge with this quiz.",
-        category:
-          quizId === "geography"
-            ? "Geography"
-            : quizId === "history"
-              ? "History"
-              : quizId === "science"
-                ? "Science"
-                : "General",
-        difficulty: quizId === "history" ? "Hard" : "Medium",
-        questions: [
-          {
-            id: 1,
-            question: "What is the capital of France?",
-            options: [
-              { id: "a", text: "London" },
-              { id: "b", text: "Paris" },
-              { id: "c", text: "Berlin" },
-              { id: "d", text: "Madrid" },
-            ],
-            correctAnswer: "b",
-          },
-          {
-            id: 2,
-            question: "Which planet is known as the Red Planet?",
-            options: [
-              { id: "a", text: "Venus" },
-              { id: "b", text: "Jupiter" },
-              { id: "c", text: "Mars" },
-              { id: "d", text: "Saturn" },
-            ],
-            correctAnswer: "c",
-          },
-          {
-            id: 3,
-            question: "What is the largest ocean on Earth?",
-            options: [
-              { id: "a", text: "Atlantic Ocean" },
-              { id: "b", text: "Indian Ocean" },
-              { id: "c", text: "Arctic Ocean" },
-              { id: "d", text: "Pacific Ocean" },
-            ],
-            correctAnswer: "d",
-          },
-        ],
-      }
+    // setTimeout(() => {
+    //   // const quizData = {
+    //   //   id: quizId,
+    //   //   title:
+    //   //     quizId === "geography"
+    //   //       ? "World Geography"
+    //   //       : quizId === "history"
+    //   //         ? "Ancient History"
+    //   //         : quizId === "science"
+    //   //           ? "Basic Science"
+    //   //           : "Quiz",
+    //   //   description: "Test your knowledge with this quiz.",
+    //   //   category:
+    //   //     quizId === "geography"
+    //   //       ? "Geography"
+    //   //       : quizId === "history"
+    //   //         ? "History"
+    //   //         : quizId === "science"
+    //   //           ? "Science"
+    //   //           : "General",
+    //   //   difficulty: quizId === "history" ? "Hard" : "Medium",
+    //   //   questions: [
+    //   //     {
+    //   //       id: 1,
+    //   //       question: "What is the capital of France?",
+    //   //       options: [
+    //   //         { id: "a", text: "London" },
+    //   //         { id: "b", text: "Paris" },
+    //   //         { id: "c", text: "Berlin" },
+    //   //         { id: "d", text: "Madrid" },
+    //   //       ],
+    //   //       correctAnswer: "b",
+    //   //     },
+    //   //     {
+    //   //       id: 2,
+    //   //       question: "Which planet is known as the Red Planet?",
+    //   //       options: [
+    //   //         { id: "a", text: "Venus" },
+    //   //         { id: "b", text: "Jupiter" },
+    //   //         { id: "c", text: "Mars" },
+    //   //         { id: "d", text: "Saturn" },
+    //   //       ],
+    //   //       correctAnswer: "c",
+    //   //     },
+    //   //     {
+    //   //       id: 3,
+    //   //       question: "What is the largest ocean on Earth?",
+    //   //       options: [
+    //   //         { id: "a", text: "Atlantic Ocean" },
+    //   //         { id: "b", text: "Indian Ocean" },
+    //   //         { id: "c", text: "Arctic Ocean" },
+    //   //         { id: "d", text: "Pacific Ocean" },
+    //   //       ],
+    //   //       correctAnswer: "d",
+    //   //     },
+    //   //   ],
+    //   // }
 
-      setQuiz(quizData)
-      setLoading(false)
-    }, 1000)
+    //   // setQuiz(quizData)
+    //   // setLoading(false)
+    // }, 1000)
+
+    getDatas()
   }, [quizId])
 
   const handleSubmit = () => {

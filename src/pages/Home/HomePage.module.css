@@ -385,7 +385,47 @@
     width: 80%;
     margin: 0 auto;
   }
+
+  .user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+  }
   
+.menu {
+  position: absolute;
+  top: 57px;
+  width: 100%;
+  background-color: #fff;
+  left: 0;
+  border-bottom: 1px solid #6b7280;
+  z-index: 99;
+  transition: all .3s;
+  overflow: hidden;
+  box-sizing: border-box;
+  height: 114px;
+}
+
+.menu div{
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  transition: all .3s;
+
+}
+
+.menu.disable {
+  height: 0px;
+  border: none;
+}
+
+.menu div:hover{
+  background: #0000003f;
+}
+
   @media (min-width: 768px) {
     .footerContent {
       flex-direction: row;
