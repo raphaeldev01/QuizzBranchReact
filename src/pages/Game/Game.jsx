@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { CheckCircle, XCircle, ArrowLeft, Clock, BarChart } from "lucide-react"
 import styles from "./Game.module.css"
 import { Link } from "react-router-dom"
@@ -17,7 +17,7 @@ export default function QuizPage() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [score, setScore] = useState(0)
   const [quizCompleted, setQuizCompleted] = useState(false)
-
+  const [startTime, setStartTime] = React.useState(0)
 
   const getDatas = async () => {
     const { token } = JSON.parse(localStorage.getItem("user"))
@@ -37,6 +37,7 @@ export default function QuizPage() {
   }
   // Mock quiz data - in a real app, this would be fetched from an API
   useEffect(() => {
+    setStartTime(Date.now());
     // Simulate API fetch
     // setTimeout(() => {
     //   // const quizData = {
@@ -114,12 +115,55 @@ export default function QuizPage() {
     }
   }
 
-  const handleNextQuestion = () => {
+  const handleNextQuestion = async () => {
     if (currentQuestion < quiz.questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1)
       setSelectedAnswer(null)
       setIsSubmitted(false)
     } else {
+      // Quizz Completed
+    //   {
+    //     id: "geography",
+    //     title: "World Geography",
+    //     category: "Geography",
+    //     difficulty: "Medium",
+    //     dateTaken: "2024-03-10",
+    //     score: 8,
+    //     totalQuestions: 10,
+    //     timeSpent: "7 min",
+    //     image: "/placeholder.svg?height=200&width=400",
+    // },
+      const endTime = Date.now()
+      const timeSpent = (Math.floor((endTime - startTime) / 1000) / 60).toFixed(2)
+      const date = new Date();
+      const dateTaken = `${date.getUTCMonth() + 1}/${date.getUTCDate()}/${date.getFullYear()}`
+    
+      const obj = {
+        quizId,
+        title: quiz.title,
+        category: quiz.category,
+        difficulty: quiz.difficulty,
+        totalQuestions: quiz.questions.length,
+        score,
+        image: quiz.image,
+        timeSpent: `${timeSpent} min`,
+        dateTaken
+      }
+
+      const { token } = JSON.parse(localStorage.getItem("user"))
+
+      const response =  (await fetch(config.URL+"/user/addhistory", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "content-type": "application/json"
+        },
+        body: JSON.stringify(obj)
+      }))
+
+      console.log(  response);
+      
+
       setQuizCompleted(true)
     }
   }

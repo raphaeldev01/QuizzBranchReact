@@ -35,101 +35,25 @@ export default function MyQuizzesPage() {
         
     }
 
+    const GetHistoy = async () => {
+        const { token } = JSON.parse(localStorage.getItem("user"))
+        const response = await (await fetch(config.URL + "/user/gethistory",
+            {
+                method: "get",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            }
+        )).json()
+
+        const infos = response.infos
+        setTakenQuizzes(infos)
+    }
+
     useEffect(() => {
         // Simulate API fetch
         GetDatas()
-
-        setTimeout(() => {
-            const mockCreatedQuizzes = [
-                {
-                    id: "custom-geography",
-                    title: "World Geography Challenge",
-                    description: "Test your knowledge of countries, capitals, and landmarks around the world.",
-                    category: "Geography",
-                    difficulty: "Medium",
-                    questions: 12,
-                    timeEstimate: "10 min",
-                    dateCreated: "2023-11-15",
-                    image: "/placeholder.svg?height=200&width=400",
-                    published: true,
-                },
-                {
-                    id: "custom-science",
-                    title: "Science Fundamentals",
-                    description: "Cover the basics of physics, chemistry, and biology.",
-                    category: "Science",
-                    difficulty: "Easy",
-                    questions: 8,
-                    timeEstimate: "6 min",
-                    dateCreated: "2023-12-03",
-                    image: "/placeholder.svg?height=200&width=400",
-                    published: true,
-                },
-                {
-                    id: "custom-movies",
-                    title: "Film Directors Quiz",
-                    description: "Test your knowledge of famous film directors and their works.",
-                    category: "Entertainment",
-                    difficulty: "Hard",
-                    questions: 15,
-                    timeEstimate: "12 min",
-                    dateCreated: "2024-01-20",
-                    image: "/placeholder.svg?height=200&width=400",
-                    published: false,
-                },
-            ]
-
-            const mockTakenQuizzes = [
-                {
-                    id: "geography",
-                    title: "World Geography",
-                    category: "Geography",
-                    difficulty: "Medium",
-                    dateTaken: "2024-03-10",
-                    score: 8,
-                    totalQuestions: 10,
-                    timeSpent: "7 min",
-                    image: "/placeholder.svg?height=200&width=400",
-                },
-                {
-                    id: "history",
-                    title: "Ancient History",
-                    category: "History",
-                    difficulty: "Hard",
-                    dateTaken: "2024-02-28",
-                    score: 12,
-                    totalQuestions: 15,
-                    timeSpent: "14 min",
-                    image: "/placeholder.svg?height=200&width=400",
-                },
-                {
-                    id: "science",
-                    title: "Basic Science",
-                    category: "Science",
-                    difficulty: "Easy",
-                    dateTaken: "2024-03-05",
-                    score: 8,
-                    totalQuestions: 8,
-                    timeSpent: "5 min",
-                    image: "/placeholder.svg?height=200&width=400",
-                },
-                {
-                    id: "movies",
-                    title: "Movie Trivia",
-                    category: "Entertainment",
-                    difficulty: "Easy",
-                    dateTaken: "2024-03-15",
-                    score: 7,
-                    totalQuestions: 10,
-                    timeSpent: "8 min",
-                    image: "/placeholder.svg?height=200&width=400",
-                },
-            ]
-
-            // setCreatedQuizzes(mockCreatedQuizzes)
-            setTakenQuizzes(mockTakenQuizzes)
-            // setLoading(false)
-        }, 800)
+        GetHistoy()
     }, [])
 
     // Filter quizzes based on search query and category
@@ -341,7 +265,7 @@ export default function MyQuizzesPage() {
                             </div>
                         ) : (
                             <div className={styles.quizGrid}>
-                                {filteredTakenQuizzes.map((quiz) => (
+                                {filteredTakenQuizzes.reverse().map((quiz) => (
                                     <Link to={`/quiz/${quiz.id}/details`} key={quiz.id} className={styles.quizCard}>
                                         <div className={styles.quizCardImageContainer}>
                                             <img src={quiz.image || "/placeholder.svg"} alt={quiz.title} className={styles.quizCardImage} />
