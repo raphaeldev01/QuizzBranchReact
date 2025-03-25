@@ -4,6 +4,7 @@ import Preview from './pages/Preview/Preview';
 import Game from './pages/Game/Game';
 import LoginPage from './pages/auth/login/LoginPage';
 import ForgetPage from './pages/auth/forget/FogetPage';
+import ForgetCode from './pages/auth/forgetCode/forgetCode';
 import SignupPage from './pages/auth/singup/SingUp';
 
 import { BrowserRouter, Routes, Route } from "react-router-dom"
@@ -22,6 +23,7 @@ function App() {
             <Route path='/login' element={<LoginPage />} />
             <Route path='/singup' element={<SignupPage />} />
             <Route path='/forgetpass' element={<ForgetPage />} />
+            <Route path='/forgot/code' element={<ForgetCode />} />
             <Route path='/create' element={<CreateQuizPage />} />
             <Route path='/myQuizzes' element= {<MyQuizzesPage />} />
         </Routes>

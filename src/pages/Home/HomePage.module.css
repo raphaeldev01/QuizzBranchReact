@@ -405,7 +405,7 @@
   transition: all .3s;
   overflow: hidden;
   box-sizing: border-box;
-  height: 114px;
+  height: 121px;
 }
 
 .menu div{
@@ -478,6 +478,11 @@
     font-size: 0.875rem;
     color: #6b7280;
   }
+
+.did {
+  background-color: #00ff002f;
+}
+
   
   @media (min-width: 768px) {
     .footerCopyright {

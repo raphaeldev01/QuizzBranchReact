@@ -37,8 +37,42 @@
   }
   
   .nav {
+    display: flex;
+      align-items: center;
+      gap: 1.5rem;
+  }
+@media (max-width: 570px) {
+  .logoText {
+    display: none;
+  } 
+}
+
+@media (max-width: 570px) {
+  .logoText {
     display: none;
   }
+  
+  .nav {
+    gap: 10px;
+    font-size: 12px;
+  }
+
+  .navLink{
+    font-size: 12px;
+  }
+
+  .user {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 380px) {
+
+    .user {
+      font-size: 0px;
+    }
+
+}
   
   @media (min-width: 768px) {
     .nav {
@@ -49,7 +83,7 @@
   }
   
   .navLink {
-    font-size: 0.875rem;
+    /* font-size: 0.875rem; */
     font-weight: 500;
     color: #4b5563;
     text-decoration: none;
@@ -117,7 +151,7 @@
   transition: all .3s;
   overflow: hidden;
   box-sizing: border-box;
-  height: 114px;
+  height: 42px;
 }
 
 .menu div{
@@ -136,4 +170,12 @@
 
 .menu div:hover{
   background: #0000003f;
+}
+
+.user svg {
+  transition: all .3s;
+}
+
+.user.active svg{
+  transform: rotate(180deg);
 }

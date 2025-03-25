@@ -97,17 +97,18 @@ export default function SignupPage() {
             <form onSubmit={handleSubmit} className={styles.form}>
               <div className={styles.formGroup}>
                 <label htmlFor="name" className={styles.label}>
-                  Full Name
+                  Username
                 </label>
                 <div className={styles.inputWrapper}>
                   <User className={styles.inputIcon} />
                   <input
                     id="name"
                     type="text"
-                    placeholder="Enter your name"
+                    placeholder="Enter your Username"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     className={styles.input}
+                    
                     required
                   />
                 </div>

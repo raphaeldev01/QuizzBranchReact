@@ -24,23 +24,20 @@ export default function Header() {
           <Link to="/myQuizzes" className={styles.navLink}>
             My Quizzes
           </Link>
-          <Link to="#" className={styles.navLink}>
-            Leaderboard
-          </Link>
-          <Link to="/create-quiz" className={styles.navLink}>
+          
+          <Link to="/create" className={styles.navLink}>
             Create Quiz
           </Link>
         </nav>
         {user ? <>
-            <div className={styles.user} onClick={() => setMenuActive(!menuActive)}>
+            <div className={`${!menuActive && styles.disable} ${styles.user}`} onClick={() => setMenuActive(!menuActive)}>
               {user.userId} <ArrowDown size="20px" />
             </div>
             <div className={`${styles.menu} ${!menuActive && styles.disable }`}>
-              <div onClick={() => {window.location.pathname = "/config"}}>Configs</div>
-              <div onClick={() => {window.location.pathname = "/profile"}}>Profile</div>
               <div onClick={() => {
                 localStorage.removeItem("user")
                 setUser(false)
+                window.location.pathname = "/login"
               }}>Leave</div>
             </div>
           </> : <>

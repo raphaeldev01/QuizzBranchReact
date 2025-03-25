@@ -162,9 +162,7 @@ export default function CreateQuizPage() {
     setFormError("")
 
     // Redirect to home after a delay
-    setTimeout(() => {
       window.location.pathname = "/myQuizzes"
-    }, 2000)
   }
 
   // Clear error message

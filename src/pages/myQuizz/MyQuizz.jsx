@@ -77,6 +77,13 @@ export default function MyQuizzesPage() {
     const allQuizzes = [...createdQuizzes, ...takenQuizzes]
     const categories = ["all", ...new Set(allQuizzes.map((quiz) => quiz.category))]
 
+    const converData = (q) => {
+        const date = new Date(q.date.seconds * 1000)
+
+        
+        return (`${(date.getMonth() + 1).toString().padStart(2, "0")}/${date.getUTCDate().toString().padStart(2, "0")}/${date.getFullYear()}`)
+    }
+
     // Handle delete quiz (in a real app, this would call an API)
     const handleDeleteQuiz = async (quizId, e) => {
         e.preventDefault()
@@ -195,7 +202,7 @@ export default function MyQuizzesPage() {
                                         : "You haven't created any quizzes yet."}
                                 </p>
                                 {!searchQuery && filterCategory === "all" && (
-                                    <Link to="/create-quiz" className={styles.emptyStateButton}>
+                                    <Link to="/create" className={styles.emptyStateButton}>
                                         Create Your First Quiz
                                     </Link>
                                 )}
@@ -203,7 +210,7 @@ export default function MyQuizzesPage() {
                         ) : (
                             <div className={styles.quizGrid}>
                                 {filteredCreatedQuizzes.map((quiz) => (
-                                    <Link to={`/quiz/${quiz.id}/details`} key={quiz.id} className={styles.quizCard}>
+                                    <Link to={`/quiz/${quiz.quizId}`} key={quiz.quizId} className={styles.quizCard}>
                                         <div className={styles.quizCardImageContainer}>
                                             <img src={quiz.image || "/placeholder.svg"} alt={quiz.title} className={styles.quizCardImage} />
                                             <span className={styles.categoryBadge}>{quiz.category}</span>
@@ -241,7 +248,7 @@ export default function MyQuizzesPage() {
                                         </div>
                                         <div className={styles.quizCardDate}>
                                             <Calendar className={styles.quizCardDateIcon} />
-                                            Created: {quiz.dateCreated}
+                                            Created: {converData(quiz)}
                                         </div>
                                     </Link>
                                 ))}
@@ -270,7 +277,7 @@ export default function MyQuizzesPage() {
                         ) : (
                             <div className={styles.quizGrid}>
                                 {filteredTakenQuizzes.reverse().map((quiz) => (
-                                    <Link to={`/quiz/${quiz.id}/details`} key={quiz.id} className={styles.quizCard}>
+                                    <Link to={`/quiz/${quiz.quizId}`} key={quiz.quizId} className={styles.quizCard}>
                                         <div className={styles.quizCardImageContainer}>
                                             <img src={quiz.image || "/placeholder.svg"} alt={quiz.title} className={styles.quizCardImage} />
                                             <span className={styles.categoryBadge}>{quiz.category}</span>
