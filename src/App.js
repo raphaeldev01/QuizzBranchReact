@@ -10,6 +10,7 @@ import SignupPage from './pages/auth/singup/SingUp';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import CreateQuizPage from './pages/createQuiz/CreateQuiz';
 import MyQuizzesPage from './pages/myQuizz/MyQuizz';
+import File404 from './pages/404';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path='/forgot/code' element={<ForgetCode />} />
             <Route path='/create' element={<CreateQuizPage />} />
             <Route path='/myQuizzes' element= {<MyQuizzesPage />} />
+            <Route path='*' element={<File404 /> } />
         </Routes>
       </BrowserRouter>
     </div>

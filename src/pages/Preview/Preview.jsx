@@ -6,6 +6,7 @@ import styles from "./Preview.module.css"
 import { Link } from "react-router-dom"
 
 import config from "../../config.json"
+import Header from "../../components/header/Header"
 
 export default function QuizDetailsPage() {
 
@@ -26,6 +27,13 @@ export default function QuizDetailsPage() {
       }
     })).json()
 
+    if(response.error) {
+      setQuiz(false)
+      setLoading(false)
+      return
+
+    }
+
     const quizData = response.infos
 
     setQuiz(quizData)
@@ -33,8 +41,6 @@ export default function QuizDetailsPage() {
 
     const datePublish = new Date(quizData.date.seconds * 1000)
 
-    console.log(quizData.date);
-    console.log(datePublish);
     
     setDate(`${datePublish.getUTCMonth() + 1}/${datePublish.getUTCDate()}/${datePublish.getFullYear()}`)
   }
@@ -44,12 +50,19 @@ export default function QuizDetailsPage() {
 
   }, [])
 
-  if (loading || !quiz) {
+  if (loading) {
     return (
       <div className={styles.loadingWrapper}>
         <div className={styles.loader}></div>
       </div>
     )
+  }
+
+  if(!quiz) {
+    return ( <>
+      <Header />
+      <h1 style={{textAlign: "center", margin: "50px"}} className={styles.title}>Quizz not found</h1>
+    </> )
   }
 
   return (

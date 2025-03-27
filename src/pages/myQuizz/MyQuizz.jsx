@@ -231,13 +231,7 @@ export default function MyQuizzesPage() {
                                             </div>
                                         </div>
                                         <div className={styles.quizCardActions}>
-                                            <button
-                                                className={styles.quizCardAction}
-                                                onClick={(e) => handleEditQuiz(quiz.id, e)}
-                                                title="Edit Quiz"
-                                            >
-                                                <Edit className={styles.quizCardActionIcon} />
-                                            </button>
+                                            
                                             <button
                                                 className={styles.quizCardAction}
                                                 onClick={(e) => handleDeleteQuiz(quiz.quizId, e)}
